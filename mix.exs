@@ -25,7 +25,6 @@ defmodule Els.Mixfile do
       cowboy: "~> 1.0.1",
       httpoison: "~> 0.11.1",
       poison: "~> 3.1",
-      websockex: "~> 0.4.0",
       gproc: "~> 0.5.0"
     ]
   end
