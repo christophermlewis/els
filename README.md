@@ -20,3 +20,4 @@ The following I would change given more time:
 - HackerNews calls HTTPoison.get! -> if a get fails it will terminate the process. This is by design, however allowing timeouts, retries etc would be a preferred choice
 - Test the supervision 
 - Test Coverage of responses back from hackenews  verifying stories are of expected type
+- Tests around API -> for a full blown API you would verify more status codes and conditions
