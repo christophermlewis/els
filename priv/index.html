@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+  
+      <script type="text/javascript">
+         function WebSocketTest()
+         {
+            if ("WebSocket" in window)
+            {
+               
+              
+               var ws = new WebSocket("ws://dev:8000/websocket/stories");
+        
+               ws.onmessage = function (evt) 
+               { 
+                  var received_msg = evt.data;
+                
+                  var stories_el = document.getElementById('msg')
+                  var ul = document.createElement('ul')
+                  var stories = JSON.parse(received_msg);
+                   for(story in stories) {
+                       var li=document.createElement('li'); 
+                      li.innerHTML = stories[story].title;  
+                     ul.appendChild(li); 
+                    }
+                  stories_el.appendChild(ul)
+               };
+        
+               ws.onclose = function()
+               { 
+               };
+          
+               window.onbeforeunload = function(event) {
+                  socket.close();
+               };
+            }
+            
+            else
+            {
+               // The browser doesn't support WebSocket
+               alert("WebSocket NOT supported by your Browser!");
+            }
+         }
+      </script>
+    
+   </head>
+   <body>
+   
+      <div id="sse">
+         <a href="javascript:WebSocketTest()">Run WebSocket</a>
+      </div>
+      <div id="msg"> </div>
+   </body>
+</html>
+
