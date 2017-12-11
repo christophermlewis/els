@@ -3,7 +3,7 @@ defmodule ELS.Resources.WebsocketStories do
   def init(_, _, _), do: {:upgrade, :protocol, :cowboy_websocket}
   def websocket_init(_TransportName, request, _opt) do
     :gproc.reg({:p, :l, :stories})
-    :erlang.send_after(0, self(), :hello) 
+    :erlang.send_after(0, self(), :broadcast) 
     {:ok, request, :state}
   end
   def websocket_terminate(_, _, _), do: :ok

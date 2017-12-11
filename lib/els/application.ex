@@ -16,7 +16,7 @@ defmodule Els.Application do
     result
   end
 
-  @repository_refresh 30000
+  @repository_refresh 300000
   def start_workers(sup) do
     {:ok, _} =  Supervisor.start_child(sup, worker(Els.Repository, [])) 
     {:ok, _} = Supervisor.start_child(sup, supervisor(Els.SubSupervisor, [@repository_refresh]))
