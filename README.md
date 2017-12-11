@@ -4,8 +4,8 @@ I've provided a static html file to show the websockets in action.
 It appends to the list whenever a refresh is done, this is just to evidence the updates.
 
 If you start the app 
-   
-   iex -S mix
+
+      iex -S mix
 
 and browse to 
 
@@ -19,4 +19,4 @@ The following I would change given more time:
 - Pass the pid of the Repository to the supervisor so that testing HackerNews refreshes can be verified via the test
 - HackerNews calls HTTPoison.get! -> if a get fails it will terminate the process. This is by design, however allowing timeouts, retries etc would be a preferred choice
 - Test the supervision 
-- Test Coverage of responses back from hacker news so verifying stories are of expected type
+- Test Coverage of responses back from hackenews  verifying stories are of expected type
