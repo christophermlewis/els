@@ -7,6 +7,13 @@ defmodule ELS.Resources.Stories do
   def json_request(request, state), do: do_json_request(:cowboy_req.binding(:id, request), :id, state)
 
   def do_json_request({:undefined, request}, :id, state), do: do_json_request(:cowboy_req.qs_val("page[number]", request), state)
+  def do_json_request({id, request}, :id ,state) do 
+    {id, _} = Integer.parse(id)
+    case Repository.stories(id) do 
+      :error -> {%{error: "not found"} |>Poison.encode! ,request, state}
+      story -> {story |> Poison.encode!, request, state}
+    end
+  end
   def do_json_request({:undefined, request}, state) do 
     { Repository.stories()|>Poison.encode!,request, state}
   end
@@ -24,12 +31,5 @@ defmodule ELS.Resources.Stories do
     |> Poison.encode!
    
     {response ,request, state}
-  end
-  def do_json_request({id, request}, :id ,state) do 
-    {id, _} = Integer.parse(id)
-    case Repository.stories(id) do 
-      :error -> {%{error: "not found"} |>Poison.encode! ,request, state}
-      story -> {story |> Poison.encode!, request, state}
-    end
   end
 end

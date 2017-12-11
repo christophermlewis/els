@@ -7,7 +7,7 @@ defmodule ELS.Resources.WebsocketStories do
     {:ok, request, :state}
   end
   def websocket_terminate(_, _, _), do: :ok
-  def websocket_info(x, request, state) do 
+  def websocket_info(_, request, state) do 
     {:reply, {:text, Repository.stories()|> Poison.encode!}, request, state}
   end
 end
