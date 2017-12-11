@@ -19,7 +19,7 @@ defmodule Els.Repository do
     {:reply, stories, stories}
   end
 
-  def handle_cast({:update, stories}, state) do 
+  def handle_cast({:update, stories}, _state) do 
    :gproc.send({:p, :l, :stories}, :repository_refreshed)
     {:noreply, stories} 
   end
