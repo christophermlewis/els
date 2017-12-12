@@ -17,10 +17,9 @@ defmodule ELS.Resources.StoriesTest do
     assert body  == "\"story\""
   end
 
-  test "GET with story id that doesn't exist should error" do
-    {:ok, %{status_code: status_code, body: body}} = HTTPoison.get("http://localhost:8000/api/stories/3")
-    assert status_code == 200
-    assert body  == "{\"error\":\"not found\"}"
+  test "GET with story id that doesn't exist should return 404" do
+    {:ok, %{status_code: status_code}} = HTTPoison.get("http://localhost:8000/api/stories/3")
+    assert status_code == 404 
   end
 
   test "GET with page n should return the n paged results" do
